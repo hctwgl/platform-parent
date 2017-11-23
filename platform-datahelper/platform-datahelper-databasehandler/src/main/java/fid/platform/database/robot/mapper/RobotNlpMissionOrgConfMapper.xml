@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fid.platform.database.robot.mapper.RobotNlpMissionOrgConfMapper">
+    <resultMap id="BaseResultMap" type="fid.platform.core.common.pojo.robot.RobotNlpMissionOrgConf">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="start_page" property="startPage" jdbcType="VARCHAR"/>
+        <result column="list_page_url_regex" property="listPageUrlRegex" jdbcType="VARCHAR"/>
+        <result column="article_page_url_regex" property="articlePageUrlRegex" jdbcType="VARCHAR"/>
+        <result column="xpath" property="xpath" jdbcType="VARCHAR"/>
+        <result column="quantity" property="quantity" jdbcType="BIGINT"/>
+        <result column="missionId" property="missionId" jdbcType="BIGINT"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, start_page, list_page_url_regex, article_page_url_regex, xpath, quantity, missionId, status
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from robot_nlp_mission_org_conf
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByMissionId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from robot_nlp_mission_org_conf
+        where missionId = #{missionId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from robot_nlp_mission_org_conf
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+    <insert id="insert" parameterType="fid.platform.core.common.pojo.robot.RobotNlpMissionOrgConf"
+            useGeneratedKeys="true" keyProperty="id">
+    insert into robot_nlp_mission_org_conf (
+    	id, 
+    	start_page, 
+    	list_page_url_regex, 
+    	article_page_url_regex, 
+    	xpath, 
+    	quantity, missionId, status)
+    values (
+    	#{id,jdbcType=BIGINT}, 
+    	#{startPage,jdbcType=VARCHAR}, 
+    	#{listPageUrlRegex,jdbcType=VARCHAR}, 
+      	#{articlePageUrlRegex,jdbcType=VARCHAR}, 
+      	#{xpath,jdbcType=VARCHAR},
+      	#{quantity,jdbcType=BIGINT},
+      	#{missionId,jdbcType=BIGINT},
+      	#{status}
+      	)
+  </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="fid.platform.core.common.pojo.robot.RobotNlpMissionOrgConf">
+        update robot_nlp_mission_org_conf
+        <set>
+            <if test="startPage != null">
+                start_page = #{startPage,jdbcType=VARCHAR},
+            </if>
+            <if test="listPageUrlRegex != null">
+                list_page_url_regex = #{listPageUrlRegex,jdbcType=VARCHAR},
+            </if>
+            <if test="articlePageUrlRegex != null">
+                article_page_url_regex = #{articlePageUrlRegex,jdbcType=VARCHAR},
+            </if>
+            <if test="xpath != null">
+                xpath = #{xpath,jdbcType=VARCHAR},
+            </if>
+            <if test="quantity != null">
+                quantity = #{quantity,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+
+    <select id="queryMissionOrgConfs" parameterType="long" resultMap="BaseResultMap">
+        SELECT T.* FROM robot_nlp_mission_org_conf T
+        WHERE T.missionId = #{missionId}
+    </select>
+
+</mapper>

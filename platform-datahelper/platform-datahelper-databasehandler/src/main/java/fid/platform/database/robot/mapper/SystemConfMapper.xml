@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fid.platform.database.robot.mapper.SystemConfMapper">
+    <resultMap type="fid.platform.core.common.pojo.robot.SystemConf" id="systemConf">
+        <id column="id" property="id"/>
+        <result column="module_id" property="moduleId"/>
+        <result column="conf_key" property="confKey"/>
+        <result column="conf_desc" property="confDesc"/>
+        <result column="conf_value" property="confValue"/>
+        <result column="is_show" property="isShow"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="querySystemConfDomain">
+      select
+        T.id,
+        T.module_id,
+        T.conf_key,
+        T.conf_desc,
+        T.conf_value,
+        T.is_show,
+        T.create_time
+      from system_conf T
+       where 1 = 1
+    </sql>
+
+    <select id="querySystemConf" parameterType="fid.platform.core.common.pojo.robot.SystemConf" resultMap="systemConf">
+        <include refid="querySystemConfDomain"/>
+        <if test="id != null">
+            and T.id = #{id}
+        </if>
+        <if test="moduleId != null">
+            and T.module_id = #{moduleId}
+        </if>
+        <if test="confKey != null">
+            and T.conf_key = #{confKey}
+        </if>
+        <if test="confDesc != null">
+            and T.conf_desc = #{confDesc}
+        </if>
+        <if test="confValue != null">
+            and T.conf_value = #{confValue}
+        </if>
+        <if test="isShow != null">
+            and T.is_show = #{isShow}
+        </if>
+        <if test="createTime != null">
+            AND T.create_time = #{createTime}
+        </if>
+    </select>
+
+    <select id="querySystemConfCount" parameterType="fid.platform.core.common.pojo.robot.SystemConf"
+            resultType="integer">
+        select count(1) as count
+        from (
+        <include refid="querySystemConfDomain"/>
+        <if test="id != null">
+            and T.id = #{id}
+        </if>
+        <if test="moduleId != null">
+            and T.module_id = #{moduleId}
+        </if>
+        <if test="confKey != null">
+            and T.conf_key = #{confKey}
+        </if>
+        <if test="confDesc != null">
+            and T.conf_desc = #{confDesc}
+        </if>
+        <if test="confValue != null">
+            and T.conf_value = #{confValue}
+        </if>
+        <if test="isShow != null">
+            and T.is_show = #{isShow}
+        </if>
+        <if test="createTime != null">
+            AND T.create_time = #{createTime}
+        </if>
+        ) c
+    </select>
+
+    <select id="findSystemConf" parameterType="string" resultMap="systemConf">
+        <include refid="querySystemConfDomain"/>
+        and T.id = #{id}
+    </select>
+
+    <insert id="insertSystemConf" parameterType="fid.platform.core.common.pojo.robot.SystemConf" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into system_conf
+        (
+            module_id
+        <if test="confKey != null">
+            ,conf_key
+        </if>
+        <if test="confDesc != null">
+            ,conf_desc
+        </if>
+        <if test="confValue != null">
+            ,conf_value
+        </if>
+        <if test="isShow != null">
+            ,is_show
+        </if>
+        )
+        values
+        (
+            #{moduleId}
+        <if test="confKey != null">
+            ,#{confKey}
+        </if>
+        <if test="confDesc != null">
+            ,#{confDesc}
+        </if>
+        <if test="confValue != null">
+            ,#{confValue}
+        </if>
+        <if test="isShow != null">
+            ,#{isShow}
+        </if>
+        )
+    </insert>
+
+    <update id="updateSystemConf" parameterType="fid.platform.core.common.pojo.robot.SystemConf">
+        update system_conf
+        set
+        id = #{id}
+        <if test="moduleId != null">
+            ,module_id = #{moduleId}
+        </if>
+        <if test="confKey != null">
+            ,conf_key = #{confKey}
+        </if>
+        <if test="confDesc != null">
+            ,conf_desc = #{confDesc}
+        </if>
+        <if test="confValue != null">
+            ,conf_value = #{confValue}
+        </if>
+        <if test="isShow != null">
+            ,is_show = #{isShow}
+        </if>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSystemConf" parameterType="string">
+      delete from system_conf where id = #{id}
+    </delete>
+</mapper>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fid.platform.database.robot.mapper.SystemModuleMapper">
+    <resultMap type="fid.platform.core.common.pojo.robot.SystemModule" id="systemModule">
+        <id column="id" property="id"/>
+        <result column="module_name" property="moduleName"/>
+        <result column="module_desc" property="moduleDesc"/>
+    </resultMap>
+
+    <sql id="querySystemModuleDomain">
+      select
+        T.id,
+        T.module_name,
+        T.module_desc
+      from system_module T
+       where 1 = 1
+    </sql>
+
+    <select id="querySystemModule" parameterType="fid.platform.core.common.pojo.robot.SystemModule"
+            resultMap="systemModule">
+        <include refid="querySystemModuleDomain"/>
+        <if test="id != null">
+            and T.id = #{id}
+        </if>
+        <if test="moduleName != null">
+            and T.module_name LIKE %#{moduleName}%
+        </if>
+        <if test="moduleDesc != null">
+            and T.module_desc = #{moduleDesc}
+        </if>
+    </select>
+
+    <select id="querySystemModuleCount" parameterType="fid.platform.core.common.pojo.robot.SystemModule"
+            resultType="integer">
+        select count(1) as count
+        from (
+        <include refid="querySystemModuleDomain"/>
+        <if test="id != null">
+            and T.id = #{id}
+        </if>
+        <if test="moduleName != null">
+            and T.module_name = #{moduleName}
+        </if>
+        <if test="moduleDesc != null">
+            and T.module_desc = #{moduleDesc}
+        </if>
+        ) c
+    </select>
+
+    <select id="findSystemModule" parameterType="string" resultMap="systemModule">
+        <include refid="querySystemModuleDomain"/>
+        and T.id = #{id}
+    </select>
+
+    <insert id="insertSystemModule" parameterType="fid.platform.core.common.pojo.robot.SystemModule"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into system_module
+        (
+        id
+        <if test="moduleName != null">
+            ,module_name
+        </if>
+        <if test="moduleDesc != null">
+            ,module_desc
+        </if>
+        )
+        values
+        (
+        #{id},
+        <if test="moduleName != null">
+            ,#{moduleName}
+        </if>
+        <if test="moduleDesc != null">
+            ,#{moduleDesc}
+        </if>
+        )
+    </insert>
+
+    <update id="updateSystemModule" parameterType="fid.platform.core.common.pojo.robot.SystemModule">
+        update system_module
+        set
+        id = #{id}
+        <if test="moduleName != null">
+            ,module_name = #{moduleName}
+        </if>
+        <if test="moduleDesc != null">
+            ,module_desc = #{moduleDesc}
+        </if>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSystemModule" parameterType="string">
+      delete from system_module where id = #{id}
+    </delete>
+</mapper>

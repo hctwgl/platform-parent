@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fid.platform.database.robot.mapper.RobotTrainDataDetailMapper">
+    <resultMap id="trainDataDetail" type="fid.platform.core.common.pojo.robot.vo.RobotTrainDataDetail">
+        <result column="missionId" property="missionId"/>
+        <result column="processStatus" property="processStatus"/>
+        <result column="createTime" property="createTime"/>
+    </resultMap>
+
+    <select id="queryRobotTrainDataDetail" resultMap="trainDataDetail">
+        SELECT missionId, processStatus, createTime FROM robot_nlp_process_status
+        WHERE processType = 1 AND missionId = #{missionId} ORDER BY createTime DESC limit 1
+    </select>
+</mapper>

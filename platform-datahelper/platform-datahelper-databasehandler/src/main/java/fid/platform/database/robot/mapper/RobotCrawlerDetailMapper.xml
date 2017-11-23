@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fid.platform.database.robot.mapper.RobotCrawlerDetailMapper">
+    <resultMap id="crawlerDetail" type="fid.platform.core.common.pojo.robot.vo.RobotCrawlerDetail">
+        <id column="id" property="id"/>
+        <result column="mission_id" property="missionId"/>
+        <result column="crawler_status" property="crawlerStatus"/>
+        <association property="crawlerPages" column="mission_id" select="queryCrawlerPage"/>
+    </resultMap>
+
+    <resultMap id="crawlerPage" type="fid.platform.core.common.pojo.robot.vo.RobotCrawlerPage">
+        <id column="id" property="id"/>
+        <result column="start_page" property="startPage"/>
+        <result column="quantity" property="quantity"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="queryCrawlerPage" parameterType="long" resultMap="crawlerPage">
+        SELECT id, start_page, quantity, status FROM robot_nlp_mission_org_conf WHERE missionId = #{id}
+    </select>
+
+    <select id="queryCrawlerDetail" parameterType="long" resultMap="crawlerDetail">
+        SELECT * FROM robot_nlp_mission_crawler_status
+        WHERE mission_id = #{missionId}
+    </select>
+
+</mapper>

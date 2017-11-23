@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fid.platform.database.robot.mapper.RobotNlpProcessStatusMapper" >
+  <resultMap id="BaseResultMap" type="fid.platform.core.common.pojo.robot.RobotNlpProcessStatus" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="processType" property="processtype" jdbcType="INTEGER" />
+    <result column="processStatus" property="processstatus" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="missionId" property="missionid" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, processType, processStatus, createTime, missionId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from robot_nlp_process_status
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from robot_nlp_process_status
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="fid.platform.core.common.pojo.robot.RobotNlpProcessStatus" >
+    insert into robot_nlp_process_status (id, processType, processStatus, 
+      createTime, missionId)
+    values (#{id,jdbcType=BIGINT}, #{processtype,jdbcType=INTEGER}, #{processstatus,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{missionid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="fid.platform.core.common.pojo.robot.RobotNlpProcessStatus" >
+    insert into robot_nlp_process_status
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="processtype != null" >
+        processType,
+      </if>
+      <if test="processstatus != null" >
+        processStatus,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="missionid != null" >
+        missionId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="processtype != null" >
+        #{processtype,jdbcType=INTEGER},
+      </if>
+      <if test="processstatus != null" >
+        #{processstatus,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="missionid != null" >
+        #{missionid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="fid.platform.core.common.pojo.robot.RobotNlpProcessStatus" >
+    update robot_nlp_process_status
+    <set >
+      <if test="processtype != null" >
+        processType = #{processtype,jdbcType=INTEGER},
+      </if>
+      <if test="processstatus != null" >
+        processStatus = #{processstatus,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="missionid != null" >
+        missionId = #{missionid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="fid.platform.core.common.pojo.robot.RobotNlpProcessStatus" >
+    update robot_nlp_process_status
+    set processType = #{processtype,jdbcType=INTEGER},
+      processStatus = #{processstatus,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      missionId = #{missionid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getNewestStatusByTypeAndMissionId" resultType="fid.platform.core.common.pojo.robot.RobotNlpProcessStatus">
+    SELECT * FROM robot_nlp_process_status WHERE missionId = #{missionId,jdbcType=BIGINT} AND processType = #{processType,jdbcType=INTEGER}
+    ORDER BY createTime DESC LIMIT 1
+  </select>
+  
+  <select id="getAllProcessByMissionId" resultType="fid.platform.core.common.pojo.robot.RobotNlpProcessStatus">
+    SELECT * FROM robot_nlp_process_status WHERE missionId = #{missionId,jdbcType=BIGINT}
+  </select>
+</mapper>

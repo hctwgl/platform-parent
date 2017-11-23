@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-api/platform-api-cache" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-api/platform-api-outinterface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-api/platform-api-outinterface/src/main/resources/ansjDic/ansjStockCodeDic.csv" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/platform-api/platform-api-outinterface/src/main/resources/ansjDic/stopWords.csv" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/platform-api/platform-api-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-core/platform-core-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-core/platform-core-common/src/main/resources/ansjDic/ansjStockCodeDic.csv" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/platform-core/platform-core-common/src/main/resources/ansjDic/stopWords.csv" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/platform-core/platform-core-deeplearningutil" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-datahelper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-datahelper/platform-datahelper-acceptedhandler" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-datahelper/platform-datahelper-cdhhandler" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-datahelper/platform-datahelper-databasehandler" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-datahelper/platform-datahelper-grabhandler" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-master" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-master/src/main/resources/template/dataTemplate.csv" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/platform-matching" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-matching/src/main/resources/ansjDics/ansjDic.csv" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/platform-matching/src/main/resources/ansjDics/stopWords.csv" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/platform-matching/src/test/resources/ansjDics/ansjDic.csv" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/platform-matching/src/test/resources/ansjDics/stopWords.csv" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/platform-modelhelper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-trainer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/platform-trainer/src/main/resources/ansjDic/ansjStockCodeDic.csv" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/platform-trainer/src/main/resources/ansjDic/stopWords.csv" charset="GBK" />
+  </component>
+</project>

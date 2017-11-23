@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fid.mapper.RobotMatchWordsMapper" >
+  <resultMap id="BaseResultMap" type="com.fid.domain.RobotMatchWords" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="missionid" property="missionid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, missionid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from robot_match_words
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from robot_match_words
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fid.domain.RobotMatchWords" useGeneratedKeys="true" keyProperty="id">
+    insert into robot_match_words (id, name, missionid
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{missionid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fid.domain.RobotMatchWords" >
+    insert into robot_match_words
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="missionid != null" >
+        missionid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="missionid != null" >
+        #{missionid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fid.domain.RobotMatchWords" >
+    update robot_match_words
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="missionid != null" >
+        missionid = #{missionid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fid.domain.RobotMatchWords" >
+    update robot_match_words
+    set name = #{name,jdbcType=VARCHAR},
+      missionid = #{missionid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryListByParam" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from robot_match_words
+		<where>
+			1=1
+			<if test="name != null">
+				and name = #{name}
+			</if>
+			<if test="missionid != null">
+				and missionid = #{missionid}
+			</if>
+			<if test="names != null">
+				<choose>
+					<when test="names.size == 0">
+						and 1!=1
+					</when>
+					<otherwise>
+						and(
+						<foreach collection="names" open="(" close=")" item="name"
+							separator="OR">
+							name = #{name}
+						</foreach>
+						)
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 批量插入 -->
+	<insert id="insertBatch" useGeneratedKeys="true" parameterType="list">
+		<selectKey resultType="long" keyProperty="id" order="AFTER">
+			SELECT
+			LAST_INSERT_ID()
+		</selectKey>
+		insert into robot_match_words (id, name,missionid)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			#{item.id},
+			#{item.name},
+			#{item.missionid}
+			)
+		</foreach>
+	</insert>
+</mapper>

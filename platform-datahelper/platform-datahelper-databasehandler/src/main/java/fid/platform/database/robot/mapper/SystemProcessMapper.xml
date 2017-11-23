@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fid.platform.database.robot.mapper.SystemProcessMapper">
+    <resultMap type="fid.platform.core.common.pojo.robot.SystemProcess" id="systemProcess">
+        <id column="id" property="id"/>
+        <result column="process_id" property="processId"/>
+        <result column="process_name" property="processName"/>
+        <result column="process_nick" property="processNick"/>
+        <result column="process_path" property="processPath"/>
+        <result column="process_alive" property="processAlive"/>
+    </resultMap>
+
+    <sql id="querySystemProcessDomain">
+      select
+        T.id,
+        T.process_id,
+        T.process_name,
+        T.process_nick,
+        T.process_path,
+        T.process_alive
+      from SYSTEM_PROCESS T
+       where 1 = 1
+    </sql>
+
+    <select id="querySystemProcess" parameterType="fid.platform.core.common.pojo.robot.SystemProcess"
+            resultMap="systemProcess">
+        <include refid="querySystemProcessDomain"/>
+        <if test="id != null">
+            and T.id = #{id}
+        </if>
+        <if test="processId != null">
+            and T.process_id = #{processId}
+        </if>
+        <if test="processName != null">
+            and T.process_name = #{processName}
+        </if>
+        <if test="processNick != null">
+            and T.process_nick = #{processNick}
+        </if>
+        <if test="processPath != null">
+            and T.process_path = #{processPath}
+        </if>
+        <if test="processAlive != null">
+            and T.process_alive = #{processAlive}
+        </if>
+    </select>
+
+    <select id="querySystemProcessCount" parameterType="fid.platform.core.common.pojo.robot.SystemProcess"
+            resultType="integer">
+        select count(1) as count
+        from (
+        <include refid="querySystemProcessDomain"/>
+        <if test="id != null">
+            and T.id = #{id}
+        </if>
+        <if test="processId != null">
+            and T.process_id = #{processId}
+        </if>
+        <if test="processName != null">
+            and T.process_name = #{processName}
+        </if>
+        <if test="processNick != null">
+            and T.process_nick = #{processNick}
+        </if>
+        <if test="processPath != null">
+            and T.process_path = #{processPath}
+        </if>
+        <if test="processAlive != null">
+            and T.process_alive = #{processAlive}
+        </if>
+        ) c
+    </select>
+
+    <select id="findSystemProcess" parameterType="string" resultMap="systemProcess">
+        <include refid="querySystemProcessDomain"/>
+        and T.id = #{id}
+    </select>
+
+    <insert id="insertSystemProcess" parameterType="fid.platform.core.common.pojo.robot.SystemProcess"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into SYSTEM_PROCESS
+        (
+        id
+        <if test="processId != null">
+            ,process_id
+        </if>
+        <if test="processName != null">
+            ,process_name
+        </if>
+        <if test="processNick != null">
+            ,process_nick
+        </if>
+        <if test="processPath != null">
+            ,process_path
+        </if>
+        <if test="processAlive != null">
+            ,process_alive
+        </if>
+        )
+        values
+        (
+        #{id},
+        <if test="processId != null">
+            ,#{processId}
+        </if>
+        <if test="processName != null">
+            ,#{processName}
+        </if>
+        <if test="processNick != null">
+            ,#{processNick}
+        </if>
+        <if test="processPath != null">
+            ,#{processPath}
+        </if>
+        <if test="processAlive != null">
+            ,#{processAlive}
+        </if>
+        )
+    </insert>
+
+    <update id="updateSystemProcess" parameterType="fid.platform.core.common.pojo.robot.SystemProcess">
+        update SYSTEM_PROCESS
+        set
+        id = #{id}
+        <if test="processId != null">
+            ,process_id = #{processId}
+        </if>
+        <if test="processName != null">
+            ,process_name = #{processName}
+        </if>
+        <if test="processNick != null">
+            ,process_nick = #{processNick}
+        </if>
+        <if test="processPath != null">
+            ,process_path = #{processPath}
+        </if>
+        <if test="processAlive != null">
+            ,process_alive = #{processAlive}
+        </if>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSystemProcess" parameterType="string">
+      delete from SYSTEM_PROCESS where id = #{id}
+    </delete>
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/platform-api/platform-api-outinterface" />
+    <file type="web" url="file://$PROJECT_DIR$/platform-datahelper/platform-datahelper-grabhandler" />
+    <file type="web" url="file://$PROJECT_DIR$/platform-master" />
+    <file type="web" url="file://$PROJECT_DIR$/platform-matching" />
+    <file type="web" url="file://$PROJECT_DIR$/platform-modelhelper" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-core/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-core/platform-core-deeplearningutil/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-matching/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/platform-datahelper/platform-datahelper-datapacker/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-master/platform-master-cache/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-master/platform-master-config/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-master/platform-master-initer/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-modelhelper/platform-modelhelper-cnn/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-modelhelper/platform-modelhelper-lstm/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-modelhelper/platform-modelhelper-word2vec/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-service/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchUrls">
+                <list>
+                  <option value="svn://120.76.222.172:8081/fid_cms/ChinaConceptStock" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/Competitor_analysis" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/Headline" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/branch" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/cmb-stock-report" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/data-sync-orcl" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/doc" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/ggzzjc" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/grapNews" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/hotSearch" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/stock-contrast" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/tag" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/winddata" />
+                  <option value="svn://120.76.222.172:8081/fid_cms/znhWechat" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="svn://120.76.222.172:8081/fid_cms/trunk" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+</project>

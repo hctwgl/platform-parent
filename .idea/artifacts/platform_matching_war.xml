@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="platform-matching:war">
+    <output-path>$PROJECT_DIR$/platform-matching/target</output-path>
+    <root id="archive" name="platformMatching.war">
+      <element id="artifact" artifact-name="platform-matching:war exploded" />
+    </root>
+  </artifact>
+</component>

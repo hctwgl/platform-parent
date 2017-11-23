@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="platform-datahelper-grabhandler:war">
+    <output-path>$PROJECT_DIR$/platform-datahelper/platform-datahelper-grabhandler/target</output-path>
+    <root id="archive" name="platform-datahelper-grabhandler.war">
+      <element id="artifact" artifact-name="platform-datahelper-grabhandler:war exploded" />
+    </root>
+  </artifact>
+</component>

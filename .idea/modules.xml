@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/platform-api/platform-api.iml" filepath="$PROJECT_DIR$/platform-api/platform-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-api/platform-api-cache/platform-api-cache.iml" filepath="$PROJECT_DIR$/platform-api/platform-api-cache/platform-api-cache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-api/platform-api-outinterface/platform-api-outinterface.iml" filepath="$PROJECT_DIR$/platform-api/platform-api-outinterface/platform-api-outinterface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-api/platform-api-service/platform-api-service.iml" filepath="$PROJECT_DIR$/platform-api/platform-api-service/platform-api-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-core/platform-core.iml" filepath="$PROJECT_DIR$/platform-core/platform-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-core/platform-core-common/platform-core-common.iml" filepath="$PROJECT_DIR$/platform-core/platform-core-common/platform-core-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-core/platform-core-deeplearningutil/platform-core-deeplearningutil.iml" filepath="$PROJECT_DIR$/platform-core/platform-core-deeplearningutil/platform-core-deeplearningutil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-datahelper/platform-datahelper.iml" filepath="$PROJECT_DIR$/platform-datahelper/platform-datahelper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-datahelper/platform-datahelper-acceptedhandler/platform-datahelper-acceptedhandler.iml" filepath="$PROJECT_DIR$/platform-datahelper/platform-datahelper-acceptedhandler/platform-datahelper-acceptedhandler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-datahelper/platform-datahelper-cdhhandler/platform-datahelper-cdhhandler.iml" filepath="$PROJECT_DIR$/platform-datahelper/platform-datahelper-cdhhandler/platform-datahelper-cdhhandler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-datahelper/platform-datahelper-databasehandler/platform-datahelper-databasehandler.iml" filepath="$PROJECT_DIR$/platform-datahelper/platform-datahelper-databasehandler/platform-datahelper-databasehandler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-datahelper/platform-datahelper-grabhandler/platform-datahelper-grabhandler.iml" filepath="$PROJECT_DIR$/platform-datahelper/platform-datahelper-grabhandler/platform-datahelper-grabhandler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-master/platform-master.iml" filepath="$PROJECT_DIR$/platform-master/platform-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-matching/platform-matching.iml" filepath="$PROJECT_DIR$/platform-matching/platform-matching.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-modelhelper/platform-modelhelper.iml" filepath="$PROJECT_DIR$/platform-modelhelper/platform-modelhelper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-parent.iml" filepath="$PROJECT_DIR$/platform-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-trainer/platform-trainer.iml" filepath="$PROJECT_DIR$/platform-trainer/platform-trainer.iml" />
+    </modules>
+  </component>
+</project>

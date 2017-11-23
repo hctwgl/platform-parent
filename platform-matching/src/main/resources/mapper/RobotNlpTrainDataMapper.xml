@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fid.mapper.RobotNlpTrainDataMapper" >
+  <resultMap id="BaseResultMap" type="com.fid.domain.RobotNlpTrainData" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="tid" property="tid" jdbcType="BIGINT" />
+    <result column="missionId" property="missionid" jdbcType="BIGINT" />
+    <result column="tName" property="tName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.fid.domain.RobotNlpTrainData" extends="BaseResultMap" >
+    <result column="txt" property="txt" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tid, missionId,tName
+  </sql>
+  <sql id="Blob_Column_List" >
+    txt
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from robot_nlp_train_data
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from robot_nlp_train_data
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fid.domain.RobotNlpTrainData" >
+    insert into robot_nlp_train_data (id, tid, missionId, tName
+      txt)
+    values (#{id,jdbcType=BIGINT}, #{tid,jdbcType=BIGINT}, #{missionid,jdbcType=BIGINT}, 
+      #{tName}, #{txt,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fid.domain.RobotNlpTrainData" >
+    insert into robot_nlp_train_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="missionid != null" >
+        missionId,
+      </if>
+      <if test="txt != null" >
+        txt,
+      </if>
+       <if test="tName != null" >
+        tName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=BIGINT},
+      </if>
+      <if test="missionid != null" >
+        #{missionid,jdbcType=BIGINT},
+      </if>
+      <if test="txt != null" >
+        #{txt,jdbcType=LONGVARCHAR},
+      </if>
+       <if test="tName != null" >
+        #{tName},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fid.domain.RobotNlpTrainData" >
+    update robot_nlp_train_data
+    <set >
+      <if test="tid != null" >
+        tid = #{tid,jdbcType=BIGINT},
+      </if>
+      <if test="missionid != null" >
+        missionId = #{missionid,jdbcType=BIGINT},
+      </if>
+      <if test="txt != null" >
+        txt = #{txt,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tName != null" >
+        tName = #{tName},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fid.domain.RobotNlpTrainData" >
+    update robot_nlp_train_data
+    set tid = #{tid,jdbcType=BIGINT},
+      missionId = #{missionid,jdbcType=BIGINT},
+      txt = #{txt,jdbcType=LONGVARCHAR},
+      tName = #{tName}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fid.domain.RobotNlpTrainData" >
+    update robot_nlp_train_data
+    set tid = #{tid,jdbcType=BIGINT},
+      missionId = #{missionid,jdbcType=BIGINT},
+      tName = #{tName}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+   <sql id="sqlOfPage">
+		<where>
+			1=1
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="tid != null">
+				and tid = #{tid}
+			</if>
+			<if test="missionid != null">
+				and missionId = #{missionid}
+			</if>
+			<if test="tName != null">
+				and tName = #{tName}
+			</if>
+			<if test="ids != null">
+				<choose>
+					<when test="ids.size == 0">
+						and 1!=1
+					</when>
+					<otherwise>
+						and(
+						<foreach collection="ids" open="(" close=")" item="id"
+							separator="OR">
+							id = #{id}
+						</foreach>
+						)
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+	</sql>
+
+	<select id="queryListByParam" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from robot_nlp_train_data
+		<include refid="sqlOfPage" />
+	</select>
+	
+	<!-- 批量插入 -->
+	<insert id="addBatch" useGeneratedKeys="true" parameterType="java.util.List">
+		<selectKey resultType="long" keyProperty="id" order="AFTER">
+			SELECT
+			LAST_INSERT_ID()
+		</selectKey>
+		insert into robot_nlp_train_data (tid, txt,missionId,tName)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			#{item.tid},
+			#{item.txt},
+			#{item.missionid},
+			#{item.tName}
+			)
+		</foreach>
+	</insert>
+</mapper>

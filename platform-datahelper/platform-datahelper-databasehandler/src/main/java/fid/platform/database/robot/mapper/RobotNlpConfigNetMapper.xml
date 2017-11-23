@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fid.platform.database.robot.mapper.RobotNlpConfigNetMapper">
+    <resultMap id="BaseResultMap" type="fid.platform.core.common.pojo.robot.RobotNlpConfigNet">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="jarFile" property="jarfile" jdbcType="VARCHAR"/>
+        <result column="logFile" property="logfile" jdbcType="VARCHAR"/>
+        <result column="outputDir" property="outputdir" jdbcType="VARCHAR"/>
+        <result column="dataPath" property="datapath" jdbcType="VARCHAR"/>
+        <result column="splitRate" property="splitrate" jdbcType="VARCHAR"/>
+        <result column="vecDicPath" property="vecdicpath" jdbcType="VARCHAR"/>
+        <result column="netConfigJson" property="netconfigjson" jdbcType="VARCHAR"/>
+        <result column="missionId" property="missionid" jdbcType="BIGINT"/>
+        <result column="learningRate" property="learningrate" jdbcType="DOUBLE"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, jarFile, logFile, outputDir, dataPath, splitRate, vecDicPath, netConfigJson, 
+    missionId, learningRate
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from robot_nlp_config_net
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from robot_nlp_config_net
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="fid.platform.core.common.pojo.robot.RobotNlpConfigNet">
+    insert into robot_nlp_config_net (id, jarFile, logFile, 
+      outputDir, dataPath, splitRate, 
+      vecDicPath, netConfigJson, missionId, 
+      learningRate)
+    values (#{id,jdbcType=BIGINT}, #{jarfile,jdbcType=VARCHAR}, #{logfile,jdbcType=VARCHAR}, 
+      #{outputdir,jdbcType=VARCHAR}, #{datapath,jdbcType=VARCHAR}, #{splitrate,jdbcType=VARCHAR}, 
+      #{vecdicpath,jdbcType=VARCHAR}, #{netconfigjson,jdbcType=VARCHAR}, #{missionid,jdbcType=BIGINT}, 
+      #{learningrate,jdbcType=DOUBLE})
+  </insert>
+    <insert id="insertSelective" parameterType="fid.platform.core.common.pojo.robot.RobotNlpConfigNet">
+        insert into robot_nlp_config_net
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="jarfile != null">
+                jarFile,
+            </if>
+            <if test="logfile != null">
+                logFile,
+            </if>
+            <if test="outputdir != null">
+                outputDir,
+            </if>
+            <if test="datapath != null">
+                dataPath,
+            </if>
+            <if test="splitrate != null">
+                splitRate,
+            </if>
+            <if test="vecdicpath != null">
+                vecDicPath,
+            </if>
+            <if test="netconfigjson != null">
+                netConfigJson,
+            </if>
+            <if test="missionid != null">
+                missionId,
+            </if>
+            <if test="learningrate != null">
+                learningRate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="jarfile != null">
+                #{jarfile,jdbcType=VARCHAR},
+            </if>
+            <if test="logfile != null">
+                #{logfile,jdbcType=VARCHAR},
+            </if>
+            <if test="outputdir != null">
+                #{outputdir,jdbcType=VARCHAR},
+            </if>
+            <if test="datapath != null">
+                #{datapath,jdbcType=VARCHAR},
+            </if>
+            <if test="splitrate != null">
+                #{splitrate,jdbcType=VARCHAR},
+            </if>
+            <if test="vecdicpath != null">
+                #{vecdicpath,jdbcType=VARCHAR},
+            </if>
+            <if test="netconfigjson != null">
+                #{netconfigjson,jdbcType=VARCHAR},
+            </if>
+            <if test="missionid != null">
+                #{missionid,jdbcType=BIGINT},
+            </if>
+            <if test="learningrate != null">
+                #{learningrate,jdbcType=DOUBLE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="fid.platform.core.common.pojo.robot.RobotNlpConfigNet">
+        update robot_nlp_config_net
+        <set>
+            <if test="jarfile != null">
+                jarFile = #{jarfile,jdbcType=VARCHAR},
+            </if>
+            <if test="logfile != null">
+                logFile = #{logfile,jdbcType=VARCHAR},
+            </if>
+            <if test="outputdir != null">
+                outputDir = #{outputdir,jdbcType=VARCHAR},
+            </if>
+            <if test="datapath != null">
+                dataPath = #{datapath,jdbcType=VARCHAR},
+            </if>
+            <if test="splitrate != null">
+                splitRate = #{splitrate,jdbcType=VARCHAR},
+            </if>
+            <if test="vecdicpath != null">
+                vecDicPath = #{vecdicpath,jdbcType=VARCHAR},
+            </if>
+            <if test="netconfigjson != null">
+                netConfigJson = #{netconfigjson,jdbcType=VARCHAR},
+            </if>
+            <if test="missionid != null">
+                missionId = #{missionid,jdbcType=BIGINT},
+            </if>
+            <if test="learningrate != null">
+                learningRate = #{learningrate,jdbcType=DOUBLE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="fid.platform.core.common.pojo.robot.RobotNlpConfigNet">
+    update robot_nlp_config_net
+    set jarFile = #{jarfile,jdbcType=VARCHAR},
+      logFile = #{logfile,jdbcType=VARCHAR},
+      outputDir = #{outputdir,jdbcType=VARCHAR},
+      dataPath = #{datapath,jdbcType=VARCHAR},
+      splitRate = #{splitrate,jdbcType=VARCHAR},
+      vecDicPath = #{vecdicpath,jdbcType=VARCHAR},
+      netConfigJson = #{netconfigjson,jdbcType=VARCHAR},
+      missionId = #{missionid,jdbcType=BIGINT},
+      learningRate = #{learningrate,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <select id="queryRobotNlpConfigNet" parameterType="fid.platform.core.common.pojo.robot.RobotNlpConfigNet"
+            resultMap="BaseResultMap">
+        SELECT * FROM robot_nlp_config_net
+        WHERE 1 = 1
+        <if test="id != null">
+            AND id = #{id}
+        </if>
+        <if test="jarFile != null">
+            AND jarFile = #{jarFile}
+        </if>
+        <if test="logFile != null">
+            AND logFile = #{logFile}
+        </if>
+        <if test="outputDir != null">
+            AND outputDir = #{outputDir}
+        </if>
+        <if test="dataPath != null">
+            AND dataPath = #{dataPath}
+        </if>
+        <if test="splitRate != null">
+            AND splitRate = #{splitRate}
+        </if>
+        <if test="vecDicPath != null">
+            AND vecDicPath = #{vecDicPath}
+        </if>
+        <if test="netConfigJson != null">
+            AND netConfigJson = #{netConfigJson}
+        </if>
+        <if test="missionId != null">
+            AND missionId = #{missionId}
+        </if>
+        <if test="learningRate != null">
+            AND learningRate = #{learningRate}
+        </if>
+    </select>
+    
+    <!--自定义-->
+    <select id="s" resultType="fid.platform.core.common.pojo.robot.RobotNlpConfigNet">
+        SELECT * FROM robot_nlp_config_net WHERE missionId = #{missionId,jdbcType=BIGINT}
+    </select>
+</mapper>

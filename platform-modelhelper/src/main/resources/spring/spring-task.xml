@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:lang="http://www.springframework.org/schema/lang" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <!--
+    CRON表达式    含义
+    "0 0 12 * * ?"    每天中午十二点触发
+    "0 15 10 ? * *"    每天早上10：15触发
+    "0 15 10 * * ?"    每天早上10：15触发
+    "0 15 10 * * ? *"    每天早上10：15触发
+    "0 15 10 * * ? 2005"    2005年的每天早上10：15触发
+    "0 * 14 * * ?"    每天从下午2点开始到2点59分每分钟一次触发
+    "0 0/5 14 * * ?"    每天从下午2点开始到2：55分结束每5分钟一次触发
+    "0 0/5 14,18 * * ?"    每天的下午2点至2：55和6点至6点55分两个时间段内每5分钟一次触发
+    "0 0-5 14 * * ?"    每天14:00至14:05每分钟一次触发
+    "0 10,44 14 ? 3 WED"    三月的每周三的14：10和14：44触发
+    "0 15 10 ? * MON-FRI"    每个周一、周二、周三、周四、周五的10：15触发
+    "0 15 10 15 * ?"     每月15号的10：15触发
+    "0 15 10 L * ?"     每月的最后一天的10：15触发
+    -->
+    <!-- 每天23:59:59执行一次 cron="59 59 23 * * ?" -->
+    <!-- 0点后每隔15分钟执行一次 cron="0 0/15 * * * ?" -->
+    <!-- 每隔1分钟执行一次 cron="0 0/1 * * * ?" -->
+    <!-- 每隔1小时执行一次 cron="0 0 0/1 * * ?" -->
+    <!-- 每隔1月执行一次  cron="0 0 0 1 * ?" -->
+    <!-- 每年12-31 23:59执行 cron="0 59 23 31 12 ?" -->
+    <!-- 每三个月的最后一天0点执行 cron="0 0 0 L 0/3 ?"-->
+
+    <!--扫描路径-->
+    <!--<context:component-scan base-package="com.simulation.task"></context:component-scan>-->
+    <!--<context:component-scan base-package="com.simulation.temp"></context:component-scan>-->
+
+    <task:scheduler id="scheduler" pool-size="15"/>
+    <task:executor id="executor" keep-alive="7200" pool-size="45-60" queue-capacity="128"
+                   rejection-policy="CALLER_RUNS"/>
+    <!--<task:scheduled-tasks scheduler="scheduler">-->
+        <!--&lt;!&ndash;年度分红 每周六22：30执行&ndash;&gt;
+        <task:scheduled ref="yearAShareDividendTask" method="run" cron="* 30 22 * * FRI "/>
+        &lt;!&ndash; 季度 每周六18点执行&ndash;&gt;
+        <task:scheduled ref="quarterReportDataTask" method="run" cron="* * 18 * * FRI "/>
+        &lt;!&ndash; 季度表 roe 计算 每周更新&ndash;&gt;
+        <task:scheduled ref="quarterTask" method="runRoe" cron="* * 20 * * FRI "/>
+        &lt;!&ndash; 季度表 rcgr、npcgr 每周同步&ndash;&gt;
+        <task:scheduled ref="quarterTask" method="runDaily" cron="* 15 20 * * FRI "/>
+        &lt;!&ndash; 季度表 股息率 更新 &ndash;&gt;
+        <task:scheduled ref="quarterTask" method="runDividedRate" cron="* 30 20 * * FRI "/>
+        &lt;!&ndash; 日行情 每天23点30分执行&ndash;&gt;
+        <task:scheduled ref="dailyQuotesTask" method="run" cron="0 30 23 * * ?"/>
+        &lt;!&ndash; 股票推荐 每天下午6点执行 &ndash;&gt;
+        <task:scheduled ref="stockRecommenTask" method="run" cron="0 0 18 * * ?"/>
+        &lt;!&ndash; 股票卖出，每天上午9：30执行&ndash;&gt;
+        <task:scheduled ref="stockSellTask" method="run" cron="0 30 9 * * ?"/>
+        &lt;!&ndash; 股票推荐的数据补入 每天上午10：00执行&ndash;&gt;
+        <task:scheduled ref="stockDataCompensateTask" method="run" cron="0 0 10 * * ?"/>
+        &lt;!&ndash; 沪深300，除权日  每日18：00数据更新&ndash;&gt;
+        <task:scheduled ref="stockDailyDataTask" method="run" cron="0 0 18 * * ?"/>
+        &lt;!&ndash; 交易日数据更新  每周周六晚上22点 &ndash;&gt;
+        <task:scheduled ref="stockDailyDataTask" method="calendarTask" cron="* * 22 * * FRI "/>
+        &lt;!&ndash; 缓存数据 每周周六晚23点&ndash;&gt;
+        <task:scheduled ref="dataCacheInitTask" method="run" cron="* * 23 * * FRI"/>-->
+        <!-- MACD计算 每天凌晨2点，时间必须在每日K线数据更新之后-->
+    <!--</task:scheduled-tasks>-->
+
+</beans>

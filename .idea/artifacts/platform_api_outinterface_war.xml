@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="platform-api-outinterface:war">
+    <output-path>$PROJECT_DIR$/platform-api/platform-api-outinterface/target</output-path>
+    <root id="archive" name="platform-api-outinterface.war">
+      <element id="artifact" artifact-name="platform-api-outinterface:war exploded" />
+    </root>
+  </artifact>
+</component>

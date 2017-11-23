@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fid.platform.database.robot.mapper.CmsContentMapper" >
+  <resultMap id="BaseResultMap" type="fid.platform.core.common.pojo.cms.CmsContent" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+    <result column="model_id" property="modelId" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="recommend" property="recommend" jdbcType="BIT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="description_suffix" property="descriptionSuffix" jdbcType="VARCHAR" />
+    <result column="description_suffix_url" property="descriptionSuffixUrl" jdbcType="VARCHAR" />
+    <result column="origin_url" property="originUrl" jdbcType="VARCHAR" />
+    <result column="origin" property="origin" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="short_title" property="shortTitle" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="title_img" property="titleImg" jdbcType="VARCHAR" />
+    <result column="content_img" property="contentImg" jdbcType="VARCHAR" />
+    <result column="likes" property="likes" jdbcType="INTEGER" />
+    <result column="views" property="views" jdbcType="INTEGER" />
+    <result column="stock_num" property="stockNum" jdbcType="SMALLINT" />
+    <result column="tpl_content" property="tplContent" jdbcType="VARCHAR" />
+    <result column="flag_bit" property="flagBit" jdbcType="BIGINT" />
+    <result column="feature" property="feature" jdbcType="VARCHAR" />
+    <result column="released_date" property="releasedDate" jdbcType="TIMESTAMP" />
+    <result column="released_user" property="releasedUser" jdbcType="VARCHAR" />
+    <result column="updated_date" property="updatedDate" jdbcType="TIMESTAMP" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="created_user_id" property="createdUserId" jdbcType="INTEGER" />
+    <result column="topic_id" property="topicId" jdbcType="INTEGER" />
+    <result column="topic_ids" property="topicIds" jdbcType="VARCHAR" />
+    <result column="tags" property="tags" jdbcType="VARCHAR" />
+    <result column="comments" property="comments" jdbcType="INTEGER" />
+    <result column="importance" property="importance" jdbcType="INTEGER" />
+    <result column="msg_type" property="msgType" jdbcType="INTEGER" />
+    <result column="subjects" property="subjects" jdbcType="VARCHAR" />
+    <result column="grap_mission_id" property="grapMissionId" jdbcType="INTEGER" />
+    <result column="relation_content_id" property="relationContentId" jdbcType="BIGINT" />
+    <result column="znh_topic" property="znhTopic" jdbcType="VARCHAR" />
+    <result column="znh_topic_id" property="znhTopicId" jdbcType="INTEGER" />
+    <result column="znh_tag" property="znhTag" jdbcType="VARCHAR" />
+    <result column="znh_tag_id" property="znhTagId" jdbcType="INTEGER" />
+    <result column="znh_tagsc" property="znhTagsc" jdbcType="VARCHAR" />
+    <result column="znh_tagsc_id" property="znhTagscId" jdbcType="VARCHAR" />
+    <result column="belong_first_seconds" property="belongFirstSeconds" jdbcType="INTEGER" />
+    <result column="topic_belong_content_id" property="topicBelongContentId" jdbcType="INTEGER" />
+    <result column="stamp" property="stamp" jdbcType="INTEGER" />
+    <result column="related_stocks" property="relatedStocks" jdbcType="VARCHAR" />
+    <result column="znhjhb_type" property="znhjhbType" jdbcType="INTEGER" />
+    <result column="profit_lm" property="profitLm" jdbcType="INTEGER" />
+    <result column="rsInChannel2" property="rsinchannel2" jdbcType="VARCHAR" />
+    <result column="grab_date_time" property="grabDateTime" jdbcType="TIMESTAMP" />
+    <result column="white_lable_first" property="whiteLableFirst" jdbcType="VARCHAR" />
+    <result column="white_lable_second" property="whiteLableSecond" jdbcType="VARCHAR" />
+    <result column="history_info" property="historyInfo" jdbcType="VARCHAR" />
+    <result column="chance_logic" property="chanceLogic" jdbcType="VARCHAR" />
+    <result column="znh_time" property="znhTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, channel_id, model_id, type_id, status, recommend, description, description_suffix, 
+    description_suffix_url, origin_url, origin, author, short_title, title, title_img, 
+    content_img, likes, views, stock_num, tpl_content, flag_bit, feature, released_date, 
+    released_user, updated_date, created_date, created_by, created_user_id, topic_id, 
+    topic_ids, tags, comments, importance, msg_type, subjects, grap_mission_id, relation_content_id, 
+    znh_topic, znh_topic_id, znh_tag, znh_tag_id, znh_tagsc, znh_tagsc_id, belong_first_seconds, 
+    topic_belong_content_id, stamp, related_stocks, znhjhb_type, profit_lm, rsInChannel2, 
+    grab_date_time, white_lable_first, white_lable_second, history_info, chance_logic, 
+    znh_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_content
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_content
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="fid.platform.core.common.pojo.cms.CmsContent" >
+    insert into cms_content (id, channel_id, model_id, 
+      type_id, status, recommend, 
+      description, description_suffix, description_suffix_url, 
+      origin_url, origin, author, 
+      short_title, title, title_img, 
+      content_img, likes, views, 
+      stock_num, tpl_content, flag_bit, 
+      feature, released_date, released_user, 
+      updated_date, created_date, created_by, 
+      created_user_id, topic_id, topic_ids, 
+      tags, comments, importance, 
+      msg_type, subjects, grap_mission_id, 
+      relation_content_id, znh_topic, znh_topic_id, 
+      znh_tag, znh_tag_id, znh_tagsc, 
+      znh_tagsc_id, belong_first_seconds, topic_belong_content_id, 
+      stamp, related_stocks, znhjhb_type, 
+      profit_lm, rsInChannel2, grab_date_time, 
+      white_lable_first, white_lable_second, history_info, 
+      chance_logic, znh_time)
+    values (#{id,jdbcType=INTEGER}, #{channelId,jdbcType=INTEGER}, #{modelId,jdbcType=INTEGER}, 
+      #{typeId,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{recommend,jdbcType=BIT}, 
+      #{description,jdbcType=VARCHAR}, #{descriptionSuffix,jdbcType=VARCHAR}, #{descriptionSuffixUrl,jdbcType=VARCHAR}, 
+      #{originUrl,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{shortTitle,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{titleImg,jdbcType=VARCHAR}, 
+      #{contentImg,jdbcType=VARCHAR}, #{likes,jdbcType=INTEGER}, #{views,jdbcType=INTEGER}, 
+      #{stockNum,jdbcType=SMALLINT}, #{tplContent,jdbcType=VARCHAR}, #{flagBit,jdbcType=BIGINT}, 
+      #{feature,jdbcType=VARCHAR}, #{releasedDate,jdbcType=TIMESTAMP}, #{releasedUser,jdbcType=VARCHAR}, 
+      #{updatedDate,jdbcType=TIMESTAMP}, #{createdDate,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdUserId,jdbcType=INTEGER}, #{topicId,jdbcType=INTEGER}, #{topicIds,jdbcType=VARCHAR}, 
+      #{tags,jdbcType=VARCHAR}, #{comments,jdbcType=INTEGER}, #{importance,jdbcType=INTEGER}, 
+      #{msgType,jdbcType=INTEGER}, #{subjects,jdbcType=VARCHAR}, #{grapMissionId,jdbcType=INTEGER}, 
+      #{relationContentId,jdbcType=BIGINT}, #{znhTopic,jdbcType=VARCHAR}, #{znhTopicId,jdbcType=INTEGER}, 
+      #{znhTag,jdbcType=VARCHAR}, #{znhTagId,jdbcType=INTEGER}, #{znhTagsc,jdbcType=VARCHAR}, 
+      #{znhTagscId,jdbcType=VARCHAR}, #{belongFirstSeconds,jdbcType=INTEGER}, #{topicBelongContentId,jdbcType=INTEGER}, 
+      #{stamp,jdbcType=INTEGER}, #{relatedStocks,jdbcType=VARCHAR}, #{znhjhbType,jdbcType=INTEGER}, 
+      #{profitLm,jdbcType=INTEGER}, #{rsinchannel2,jdbcType=VARCHAR}, #{grabDateTime,jdbcType=TIMESTAMP}, 
+      #{whiteLableFirst,jdbcType=VARCHAR}, #{whiteLableSecond,jdbcType=VARCHAR}, #{historyInfo,jdbcType=VARCHAR}, 
+      #{chanceLogic,jdbcType=VARCHAR}, #{znhTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="fid.platform.core.common.pojo.cms.CmsContent" >
+    insert into cms_content
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="modelId != null" >
+        model_id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="recommend != null" >
+        recommend,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="descriptionSuffix != null" >
+        description_suffix,
+      </if>
+      <if test="descriptionSuffixUrl != null" >
+        description_suffix_url,
+      </if>
+      <if test="originUrl != null" >
+        origin_url,
+      </if>
+      <if test="origin != null" >
+        origin,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="shortTitle != null" >
+        short_title,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="titleImg != null" >
+        title_img,
+      </if>
+      <if test="contentImg != null" >
+        content_img,
+      </if>
+      <if test="likes != null" >
+        likes,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+      <if test="stockNum != null" >
+        stock_num,
+      </if>
+      <if test="tplContent != null" >
+        tpl_content,
+      </if>
+      <if test="flagBit != null" >
+        flag_bit,
+      </if>
+      <if test="feature != null" >
+        feature,
+      </if>
+      <if test="releasedDate != null" >
+        released_date,
+      </if>
+      <if test="releasedUser != null" >
+        released_user,
+      </if>
+      <if test="updatedDate != null" >
+        updated_date,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdUserId != null" >
+        created_user_id,
+      </if>
+      <if test="topicId != null" >
+        topic_id,
+      </if>
+      <if test="topicIds != null" >
+        topic_ids,
+      </if>
+      <if test="tags != null" >
+        tags,
+      </if>
+      <if test="comments != null" >
+        comments,
+      </if>
+      <if test="importance != null" >
+        importance,
+      </if>
+      <if test="msgType != null" >
+        msg_type,
+      </if>
+      <if test="subjects != null" >
+        subjects,
+      </if>
+      <if test="grapMissionId != null" >
+        grap_mission_id,
+      </if>
+      <if test="relationContentId != null" >
+        relation_content_id,
+      </if>
+      <if test="znhTopic != null" >
+        znh_topic,
+      </if>
+      <if test="znhTopicId != null" >
+        znh_topic_id,
+      </if>
+      <if test="znhTag != null" >
+        znh_tag,
+      </if>
+      <if test="znhTagId != null" >
+        znh_tag_id,
+      </if>
+      <if test="znhTagsc != null" >
+        znh_tagsc,
+      </if>
+      <if test="znhTagscId != null" >
+        znh_tagsc_id,
+      </if>
+      <if test="belongFirstSeconds != null" >
+        belong_first_seconds,
+      </if>
+      <if test="topicBelongContentId != null" >
+        topic_belong_content_id,
+      </if>
+      <if test="stamp != null" >
+        stamp,
+      </if>
+      <if test="relatedStocks != null" >
+        related_stocks,
+      </if>
+      <if test="znhjhbType != null" >
+        znhjhb_type,
+      </if>
+      <if test="profitLm != null" >
+        profit_lm,
+      </if>
+      <if test="rsinchannel2 != null" >
+        rsInChannel2,
+      </if>
+      <if test="grabDateTime != null" >
+        grab_date_time,
+      </if>
+      <if test="whiteLableFirst != null" >
+        white_lable_first,
+      </if>
+      <if test="whiteLableSecond != null" >
+        white_lable_second,
+      </if>
+      <if test="historyInfo != null" >
+        history_info,
+      </if>
+      <if test="chanceLogic != null" >
+        chance_logic,
+      </if>
+      <if test="znhTime != null" >
+        znh_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="recommend != null" >
+        #{recommend,jdbcType=BIT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptionSuffix != null" >
+        #{descriptionSuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptionSuffixUrl != null" >
+        #{descriptionSuffixUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="originUrl != null" >
+        #{originUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="shortTitle != null" >
+        #{shortTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titleImg != null" >
+        #{titleImg,jdbcType=VARCHAR},
+      </if>
+      <if test="contentImg != null" >
+        #{contentImg,jdbcType=VARCHAR},
+      </if>
+      <if test="likes != null" >
+        #{likes,jdbcType=INTEGER},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="stockNum != null" >
+        #{stockNum,jdbcType=SMALLINT},
+      </if>
+      <if test="tplContent != null" >
+        #{tplContent,jdbcType=VARCHAR},
+      </if>
+      <if test="flagBit != null" >
+        #{flagBit,jdbcType=BIGINT},
+      </if>
+      <if test="feature != null" >
+        #{feature,jdbcType=VARCHAR},
+      </if>
+      <if test="releasedDate != null" >
+        #{releasedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releasedUser != null" >
+        #{releasedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        #{updatedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUserId != null" >
+        #{createdUserId,jdbcType=INTEGER},
+      </if>
+      <if test="topicId != null" >
+        #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="topicIds != null" >
+        #{topicIds,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null" >
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="importance != null" >
+        #{importance,jdbcType=INTEGER},
+      </if>
+      <if test="msgType != null" >
+        #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="subjects != null" >
+        #{subjects,jdbcType=VARCHAR},
+      </if>
+      <if test="grapMissionId != null" >
+        #{grapMissionId,jdbcType=INTEGER},
+      </if>
+      <if test="relationContentId != null" >
+        #{relationContentId,jdbcType=BIGINT},
+      </if>
+      <if test="znhTopic != null" >
+        #{znhTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="znhTopicId != null" >
+        #{znhTopicId,jdbcType=INTEGER},
+      </if>
+      <if test="znhTag != null" >
+        #{znhTag,jdbcType=VARCHAR},
+      </if>
+      <if test="znhTagId != null" >
+        #{znhTagId,jdbcType=INTEGER},
+      </if>
+      <if test="znhTagsc != null" >
+        #{znhTagsc,jdbcType=VARCHAR},
+      </if>
+      <if test="znhTagscId != null" >
+        #{znhTagscId,jdbcType=VARCHAR},
+      </if>
+      <if test="belongFirstSeconds != null" >
+        #{belongFirstSeconds,jdbcType=INTEGER},
+      </if>
+      <if test="topicBelongContentId != null" >
+        #{topicBelongContentId,jdbcType=INTEGER},
+      </if>
+      <if test="stamp != null" >
+        #{stamp,jdbcType=INTEGER},
+      </if>
+      <if test="relatedStocks != null" >
+        #{relatedStocks,jdbcType=VARCHAR},
+      </if>
+      <if test="znhjhbType != null" >
+        #{znhjhbType,jdbcType=INTEGER},
+      </if>
+      <if test="profitLm != null" >
+        #{profitLm,jdbcType=INTEGER},
+      </if>
+      <if test="rsinchannel2 != null" >
+        #{rsinchannel2,jdbcType=VARCHAR},
+      </if>
+      <if test="grabDateTime != null" >
+        #{grabDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="whiteLableFirst != null" >
+        #{whiteLableFirst,jdbcType=VARCHAR},
+      </if>
+      <if test="whiteLableSecond != null" >
+        #{whiteLableSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="historyInfo != null" >
+        #{historyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="chanceLogic != null" >
+        #{chanceLogic,jdbcType=VARCHAR},
+      </if>
+      <if test="znhTime != null" >
+        #{znhTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="fid.platform.core.common.pojo.cms.CmsContent" >
+    update cms_content
+    <set >
+      <if test="channelId != null" >
+        channel_id = #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="modelId != null" >
+        model_id = #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="recommend != null" >
+        recommend = #{recommend,jdbcType=BIT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptionSuffix != null" >
+        description_suffix = #{descriptionSuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptionSuffixUrl != null" >
+        description_suffix_url = #{descriptionSuffixUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="originUrl != null" >
+        origin_url = #{originUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="shortTitle != null" >
+        short_title = #{shortTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titleImg != null" >
+        title_img = #{titleImg,jdbcType=VARCHAR},
+      </if>
+      <if test="contentImg != null" >
+        content_img = #{contentImg,jdbcType=VARCHAR},
+      </if>
+      <if test="likes != null" >
+        likes = #{likes,jdbcType=INTEGER},
+      </if>
+      <if test="views != null" >
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="stockNum != null" >
+        stock_num = #{stockNum,jdbcType=SMALLINT},
+      </if>
+      <if test="tplContent != null" >
+        tpl_content = #{tplContent,jdbcType=VARCHAR},
+      </if>
+      <if test="flagBit != null" >
+        flag_bit = #{flagBit,jdbcType=BIGINT},
+      </if>
+      <if test="feature != null" >
+        feature = #{feature,jdbcType=VARCHAR},
+      </if>
+      <if test="releasedDate != null" >
+        released_date = #{releasedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releasedUser != null" >
+        released_user = #{releasedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        updated_date = #{updatedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUserId != null" >
+        created_user_id = #{createdUserId,jdbcType=INTEGER},
+      </if>
+      <if test="topicId != null" >
+        topic_id = #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="topicIds != null" >
+        topic_ids = #{topicIds,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null" >
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        comments = #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="importance != null" >
+        importance = #{importance,jdbcType=INTEGER},
+      </if>
+      <if test="msgType != null" >
+        msg_type = #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="subjects != null" >
+        subjects = #{subjects,jdbcType=VARCHAR},
+      </if>
+      <if test="grapMissionId != null" >
+        grap_mission_id = #{grapMissionId,jdbcType=INTEGER},
+      </if>
+      <if test="relationContentId != null" >
+        relation_content_id = #{relationContentId,jdbcType=BIGINT},
+      </if>
+      <if test="znhTopic != null" >
+        znh_topic = #{znhTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="znhTopicId != null" >
+        znh_topic_id = #{znhTopicId,jdbcType=INTEGER},
+      </if>
+      <if test="znhTag != null" >
+        znh_tag = #{znhTag,jdbcType=VARCHAR},
+      </if>
+      <if test="znhTagId != null" >
+        znh_tag_id = #{znhTagId,jdbcType=INTEGER},
+      </if>
+      <if test="znhTagsc != null" >
+        znh_tagsc = #{znhTagsc,jdbcType=VARCHAR},
+      </if>
+      <if test="znhTagscId != null" >
+        znh_tagsc_id = #{znhTagscId,jdbcType=VARCHAR},
+      </if>
+      <if test="belongFirstSeconds != null" >
+        belong_first_seconds = #{belongFirstSeconds,jdbcType=INTEGER},
+      </if>
+      <if test="topicBelongContentId != null" >
+        topic_belong_content_id = #{topicBelongContentId,jdbcType=INTEGER},
+      </if>
+      <if test="stamp != null" >
+        stamp = #{stamp,jdbcType=INTEGER},
+      </if>
+      <if test="relatedStocks != null" >
+        related_stocks = #{relatedStocks,jdbcType=VARCHAR},
+      </if>
+      <if test="znhjhbType != null" >
+        znhjhb_type = #{znhjhbType,jdbcType=INTEGER},
+      </if>
+      <if test="profitLm != null" >
+        profit_lm = #{profitLm,jdbcType=INTEGER},
+      </if>
+      <if test="rsinchannel2 != null" >
+        rsInChannel2 = #{rsinchannel2,jdbcType=VARCHAR},
+      </if>
+      <if test="grabDateTime != null" >
+        grab_date_time = #{grabDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="whiteLableFirst != null" >
+        white_lable_first = #{whiteLableFirst,jdbcType=VARCHAR},
+      </if>
+      <if test="whiteLableSecond != null" >
+        white_lable_second = #{whiteLableSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="historyInfo != null" >
+        history_info = #{historyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="chanceLogic != null" >
+        chance_logic = #{chanceLogic,jdbcType=VARCHAR},
+      </if>
+      <if test="znhTime != null" >
+        znh_time = #{znhTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="fid.platform.core.common.pojo.cms.CmsContent" >
+    update cms_content
+    set channel_id = #{channelId,jdbcType=INTEGER},
+      model_id = #{modelId,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      recommend = #{recommend,jdbcType=BIT},
+      description = #{description,jdbcType=VARCHAR},
+      description_suffix = #{descriptionSuffix,jdbcType=VARCHAR},
+      description_suffix_url = #{descriptionSuffixUrl,jdbcType=VARCHAR},
+      origin_url = #{originUrl,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      short_title = #{shortTitle,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      title_img = #{titleImg,jdbcType=VARCHAR},
+      content_img = #{contentImg,jdbcType=VARCHAR},
+      likes = #{likes,jdbcType=INTEGER},
+      views = #{views,jdbcType=INTEGER},
+      stock_num = #{stockNum,jdbcType=SMALLINT},
+      tpl_content = #{tplContent,jdbcType=VARCHAR},
+      flag_bit = #{flagBit,jdbcType=BIGINT},
+      feature = #{feature,jdbcType=VARCHAR},
+      released_date = #{releasedDate,jdbcType=TIMESTAMP},
+      released_user = #{releasedUser,jdbcType=VARCHAR},
+      updated_date = #{updatedDate,jdbcType=TIMESTAMP},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_user_id = #{createdUserId,jdbcType=INTEGER},
+      topic_id = #{topicId,jdbcType=INTEGER},
+      topic_ids = #{topicIds,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      comments = #{comments,jdbcType=INTEGER},
+      importance = #{importance,jdbcType=INTEGER},
+      msg_type = #{msgType,jdbcType=INTEGER},
+      subjects = #{subjects,jdbcType=VARCHAR},
+      grap_mission_id = #{grapMissionId,jdbcType=INTEGER},
+      relation_content_id = #{relationContentId,jdbcType=BIGINT},
+      znh_topic = #{znhTopic,jdbcType=VARCHAR},
+      znh_topic_id = #{znhTopicId,jdbcType=INTEGER},
+      znh_tag = #{znhTag,jdbcType=VARCHAR},
+      znh_tag_id = #{znhTagId,jdbcType=INTEGER},
+      znh_tagsc = #{znhTagsc,jdbcType=VARCHAR},
+      znh_tagsc_id = #{znhTagscId,jdbcType=VARCHAR},
+      belong_first_seconds = #{belongFirstSeconds,jdbcType=INTEGER},
+      topic_belong_content_id = #{topicBelongContentId,jdbcType=INTEGER},
+      stamp = #{stamp,jdbcType=INTEGER},
+      related_stocks = #{relatedStocks,jdbcType=VARCHAR},
+      znhjhb_type = #{znhjhbType,jdbcType=INTEGER},
+      profit_lm = #{profitLm,jdbcType=INTEGER},
+      rsInChannel2 = #{rsinchannel2,jdbcType=VARCHAR},
+      grab_date_time = #{grabDateTime,jdbcType=TIMESTAMP},
+      white_lable_first = #{whiteLableFirst,jdbcType=VARCHAR},
+      white_lable_second = #{whiteLableSecond,jdbcType=VARCHAR},
+      history_info = #{historyInfo,jdbcType=VARCHAR},
+      chance_logic = #{chanceLogic,jdbcType=VARCHAR},
+      znh_time = #{znhTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

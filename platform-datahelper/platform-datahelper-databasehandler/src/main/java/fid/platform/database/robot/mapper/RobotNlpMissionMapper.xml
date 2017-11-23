@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fid.platform.database.robot.mapper.RobotNlpMissionMapper">
+    <resultMap id="BaseResultMap" type="fid.platform.core.common.pojo.robot.RobotNlpMission">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="SMALLINT"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name, description, status, create_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from robot_nlp_mission
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from robot_nlp_mission
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="fid.platform.core.common.pojo.robot.RobotNlpMission">
+    insert into robot_nlp_mission (id, name, description, 
+      status, create_time)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{status,jdbcType=SMALLINT}, sysdate())
+  </insert>
+    <insert id="insertSelective" parameterType="fid.platform.core.common.pojo.robot.RobotNlpMission">
+        insert into robot_nlp_mission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=SMALLINT},
+            </if>
+            <if test="createTime != null">
+                sysdate(),
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="fid.platform.core.common.pojo.robot.RobotNlpMission">
+        update robot_nlp_mission
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=SMALLINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="fid.platform.core.common.pojo.robot.RobotNlpMission">
+    update robot_nlp_mission
+    set name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      status = #{status,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <sql id="queryRobotNlpMissionDomain">
+        select
+        T.id,
+        T.name,
+        T.description,
+        T.status,
+        T.create_time
+        from robot_nlp_mission T
+        where 1 = 1
+    </sql>
+
+    <select id="queryRobotNlpMission" parameterType="fid.platform.core.common.pojo.robot.RobotNlpMission"
+            resultMap="BaseResultMap">
+        <include refid="queryRobotNlpMissionDomain"/>
+        <if test="id != null">
+            and T.id = #{id}
+        </if>
+        <if test="name != null">
+            and T.name = #{name}
+        </if>
+        <if test="description != null">
+            and T.description = #{description}
+        </if>
+        <if test="status != null">
+            and T.status = #{status}
+        </if>
+        <if test="createTime != null">
+            AND T.create_time = #{createTime}
+        </if>
+    </select>
+
+    <select id="queryRobotNlpMissionCount" parameterType="fid.platform.core.common.pojo.robot.RobotNlpMission"
+            resultType="integer">
+        select count(1) as count
+        from (
+        <include refid="queryRobotNlpMissionDomain"/>
+        <if test="id != null">
+            and T.id = #{id}
+        </if>
+        <if test="name != null">
+            and T.name = #{name}
+        </if>
+        <if test="description != null">
+            and T.description = #{description}
+        </if>
+        <if test="status != null">
+            and T.status = #{status}
+        </if>
+        <if test="createTime != null">
+            AND T.create_time = #{createTime}
+        </if>
+        ) c
+    </select>
+
+</mapper>

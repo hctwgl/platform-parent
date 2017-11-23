@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fid.platform.database.robot.mapper.RobotNlpConfigWord2vecMapper">
+    <resultMap id="BaseResultMap" type="fid.platform.core.common.pojo.robot.RobotNlpConfigWord2vec">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="outputPath" property="outputpath" jdbcType="VARCHAR"/>
+        <result column="dataPath" property="datapath" jdbcType="VARCHAR"/>
+        <result column="jarFile" property="jarfile" jdbcType="VARCHAR"/>
+        <result column="logFile" property="logfile" jdbcType="VARCHAR"/>
+        <result column="minWordFrequency" property="minwordfrequency" jdbcType="INTEGER"/>
+        <result column="iteration" property="iteration" jdbcType="INTEGER"/>
+        <result column="seed" property="seed" jdbcType="INTEGER"/>
+        <result column="layerSize" property="layersize" jdbcType="INTEGER"/>
+        <result column="learningRate" property="learningrate" jdbcType="DOUBLE"/>
+        <result column="windowSize" property="windowsize" jdbcType="INTEGER"/>
+        <result column="missionId" property="missionid" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <resultMap id="pageWord2Vec" type="fid.platform.core.common.pojo.robot.vo.RobotWord2Vec">
+        <id column="id" property="id"/>
+        <result column="missionId" property="missionId"/>
+        <result column="minWordFrequency" property="minWordFrequency"/>
+        <result column="iteration" property="iteration"/>
+        <result column="seed" property="seed"/>
+        <result column="layerSize" property="layerSize"/>
+        <result column="learningRate" property="learningRate"/>
+        <result column="windowSize" property="windowSize"/>
+        <result column="processStatus" property="processStatus"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, outputPath, dataPath, jarFile, logFile, minWordFrequency, iteration, seed, layerSize, 
+    learningRate, windowSize, missionId
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from robot_nlp_config_word2vec
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from robot_nlp_config_word2vec
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="fid.platform.core.common.pojo.robot.RobotNlpConfigWord2vec">
+    insert into robot_nlp_config_word2vec (id, outputPath, dataPath, 
+      jarFile, logFile, minWordFrequency, 
+      iteration, seed, layerSize, 
+      learningRate, windowSize, missionId
+      )
+    values (#{id,jdbcType=BIGINT}, #{outputpath,jdbcType=VARCHAR}, #{datapath,jdbcType=VARCHAR}, 
+      #{jarfile,jdbcType=VARCHAR}, #{logfile,jdbcType=VARCHAR}, #{minwordfrequency,jdbcType=INTEGER}, 
+      #{iteration,jdbcType=INTEGER}, #{seed,jdbcType=INTEGER}, #{layersize,jdbcType=INTEGER}, 
+      #{learningrate,jdbcType=DOUBLE}, #{windowsize,jdbcType=INTEGER}, #{missionid,jdbcType=BIGINT}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="fid.platform.core.common.pojo.robot.RobotNlpConfigWord2vec">
+        insert into robot_nlp_config_word2vec
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="outputpath != null">
+                outputPath,
+            </if>
+            <if test="datapath != null">
+                dataPath,
+            </if>
+            <if test="jarfile != null">
+                jarFile,
+            </if>
+            <if test="logfile != null">
+                logFile,
+            </if>
+            <if test="minwordfrequency != null">
+                minWordFrequency,
+            </if>
+            <if test="iteration != null">
+                iteration,
+            </if>
+            <if test="seed != null">
+                seed,
+            </if>
+            <if test="layersize != null">
+                layerSize,
+            </if>
+            <if test="learningrate != null">
+                learningRate,
+            </if>
+            <if test="windowsize != null">
+                windowSize,
+            </if>
+            <if test="missionid != null">
+                missionId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="outputpath != null">
+                #{outputpath,jdbcType=VARCHAR},
+            </if>
+            <if test="datapath != null">
+                #{datapath,jdbcType=VARCHAR},
+            </if>
+            <if test="jarfile != null">
+                #{jarfile,jdbcType=VARCHAR},
+            </if>
+            <if test="logfile != null">
+                #{logfile,jdbcType=VARCHAR},
+            </if>
+            <if test="minwordfrequency != null">
+                #{minwordfrequency,jdbcType=INTEGER},
+            </if>
+            <if test="iteration != null">
+                #{iteration,jdbcType=INTEGER},
+            </if>
+            <if test="seed != null">
+                #{seed,jdbcType=INTEGER},
+            </if>
+            <if test="layersize != null">
+                #{layersize,jdbcType=INTEGER},
+            </if>
+            <if test="learningrate != null">
+                #{learningrate,jdbcType=DOUBLE},
+            </if>
+            <if test="windowsize != null">
+                #{windowsize,jdbcType=INTEGER},
+            </if>
+            <if test="missionid != null">
+                #{missionid,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="fid.platform.core.common.pojo.robot.RobotNlpConfigWord2vec">
+        update robot_nlp_config_word2vec
+        <set>
+            <if test="outputpath != null">
+                outputPath = #{outputpath,jdbcType=VARCHAR},
+            </if>
+            <if test="datapath != null">
+                dataPath = #{datapath,jdbcType=VARCHAR},
+            </if>
+            <if test="jarfile != null">
+                jarFile = #{jarfile,jdbcType=VARCHAR},
+            </if>
+            <if test="logfile != null">
+                logFile = #{logfile,jdbcType=VARCHAR},
+            </if>
+            <if test="minwordfrequency != null">
+                minWordFrequency = #{minwordfrequency,jdbcType=INTEGER},
+            </if>
+            <if test="iteration != null">
+                iteration = #{iteration,jdbcType=INTEGER},
+            </if>
+            <if test="seed != null">
+                seed = #{seed,jdbcType=INTEGER},
+            </if>
+            <if test="layersize != null">
+                layerSize = #{layersize,jdbcType=INTEGER},
+            </if>
+            <if test="learningrate != null">
+                learningRate = #{learningrate,jdbcType=DOUBLE},
+            </if>
+            <if test="windowsize != null">
+                windowSize = #{windowsize,jdbcType=INTEGER},
+            </if>
+            <if test="missionid != null">
+                missionId = #{missionid,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="fid.platform.core.common.pojo.robot.RobotNlpConfigWord2vec">
+    update robot_nlp_config_word2vec
+    set outputPath = #{outputpath,jdbcType=VARCHAR},
+      dataPath = #{datapath,jdbcType=VARCHAR},
+      jarFile = #{jarfile,jdbcType=VARCHAR},
+      logFile = #{logfile,jdbcType=VARCHAR},
+      minWordFrequency = #{minwordfrequency,jdbcType=INTEGER},
+      iteration = #{iteration,jdbcType=INTEGER},
+      seed = #{seed,jdbcType=INTEGER},
+      layerSize = #{layersize,jdbcType=INTEGER},
+      learningRate = #{learningrate,jdbcType=DOUBLE},
+      windowSize = #{windowsize,jdbcType=INTEGER},
+      missionId = #{missionid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <!--自定义查询-->
+    <select id="getWord2VecConfigByMissionId" resultType="fid.platform.core.common.pojo.robot.RobotNlpConfigWord2vec">
+    SELECT * FROM robot_nlp_config_word2vec
+    WHERE missionId = #{missionId,jdbcType=BIGINT}
+  </select>
+
+    <select id="queryPageWord2Vec" resultMap="pageWord2Vec">
+        SELECT
+          A.id,
+          A.missionId,
+          A.minWordFrequency,
+          A.iteration,
+          A.seed,
+          A.layerSize,
+          A.learningRate,
+          A.windowSize,
+          B.processStatus
+        FROM robot_nlp_config_word2vec A LEFT JOIN robot_nlp_process_status B ON A.missionId = B.missionId AND B.processType = 2
+        WHERE A.missionId = #{missionId}
+    </select>
+</mapper>

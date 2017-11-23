@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>platform-core</artifactId>
+        <groupId>fid.platform</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>platform-core-deeplearningutil</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>fid.platform</groupId>
+            <artifactId>platform-core-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-core</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-nn</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.nd4j</groupId>-->
+        <!--<artifactId>nd4j-backends</artifactId>-->
+        <!--<version>0.9.1</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-nlp</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+        <!--dl4j 的spark关联包 -->
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>dl4j-spark_2.11</artifactId>
+            <version>${dl4j.version}_spark_2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>dl4j-spark-parameterserver_2.11</artifactId>
+            <version>${dl4j.version}_spark_2</version>
+        </dependency>
+        <!--调用GPU-->
+        <!--<dependency>-->
+        <!--<groupId>org.nd4j</groupId>-->
+        <!--<artifactId>nd4j-cuda-8.0-platform</artifactId>-->
+        <!--<version>${dl4j.version}</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.nd4j</groupId>
+            <artifactId>nd4j-native-platform</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.deeplearning4j</groupId>-->
+        <!--<artifactId>deeplearning4j-ui_2.11</artifactId>-->
+        <!--<version>${dl4j.version}</version>-->
+        <!--</dependency>-->
+
+    </dependencies>
+</project>

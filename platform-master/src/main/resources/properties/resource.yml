@@ -1,0 +1,29 @@
+path:
+  #上传文件保存路径
+  uploadFilePath: "/Users/mengtian/Documents/temp/csv"
+  #训练集模版保存路径
+  csvStencilPath: "/Users/mengtian/Documents/temp/template/dataTemplate.csv"
+
+#调用word2vec模块时需要传递的参数
+word2vec:
+  #用于训练可执行jar包的位置
+  trainJar: "/usr/java/tools/trainingjar/word2vec/word2vec-trainer.jar"
+  #路径前后需要带分隔符
+  path: "/usr/java/tools/trainingdata/"
+  #路径格式 /usr/java/tools/trainingdata/mission_1/outputPath/
+  outputPathName: "outputPath"
+  #路径格式 /usr/java/tools/trainingdata//mission_1/objPath/
+  datapathName: "objPath"
+  #路径格式 /usr/java/tools/trainingdata//mission_1/logPath/
+  logFile: "logPath"
+
+#调用各个模块的服务接口
+request:
+  #训练向量词典
+  word2vec: "/platform-modelhelper/word2vec/startTrainMission"
+  #保存训练集对应的二进制文件
+  labelSentence: "/platform-modelhelper/word2vec/saveData"
+
+#训练集服务端口，用于服务注册
+service:
+  port: "10086"

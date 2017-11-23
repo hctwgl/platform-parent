@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fid.mapper.RobotMatchKwRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.fid.domain.RobotMatchKwRelation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="k_id" property="kId" jdbcType="BIGINT" />
+    <result column="w_id" property="wId" jdbcType="BIGINT" />
+    <result column="missionid" property="missionid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, k_id, w_id, missionid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from robot_match_kw_relation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from robot_match_kw_relation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fid.domain.RobotMatchKwRelation" useGeneratedKeys="true" keyProperty="id">
+    insert into robot_match_kw_relation (id, k_id, w_id, missionid
+      )
+    values (#{id,jdbcType=BIGINT}, #{kId,jdbcType=BIGINT}, #{wId,jdbcType=BIGINT}, #{missionid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fid.domain.RobotMatchKwRelation" >
+    insert into robot_match_kw_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="kId != null" >
+        k_id,
+      </if>
+      <if test="wId != null" >
+        w_id,
+      </if>
+      <if test="missionid != null" >
+        missionid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="kId != null" >
+        #{kId,jdbcType=BIGINT},
+      </if>
+      <if test="wId != null" >
+        #{wId,jdbcType=BIGINT},
+      </if>
+      <if test="missionid != null" >
+        #{missionid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fid.domain.RobotMatchKwRelation" >
+    update robot_match_kw_relation
+    <set >
+      <if test="kId != null" >
+        k_id = #{kId,jdbcType=BIGINT},
+      </if>
+      <if test="wId != null" >
+        w_id = #{wId,jdbcType=BIGINT},
+      </if>
+      <if test="missionid != null" >
+        missionid = #{missionid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fid.domain.RobotMatchKwRelation" >
+    update robot_match_kw_relation
+    set k_id = #{kId,jdbcType=BIGINT},
+      w_id = #{wId,jdbcType=BIGINT},
+      missionid = #{missionid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+   <sql id="sqlOfPage">
+		<where>
+			1=1
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="kwId != null">
+				and k_id = #{kId}
+			</if>
+			<if test="wId != null">
+				and w_id = #{wId}
+			</if>
+			<if test="ids != null">
+				<choose>
+					<when test="ids.size == 0">
+						and 1!=1
+					</when>
+					<otherwise>
+						and(
+						<foreach collection="ids" open="(" close=")" item="id"
+							separator="OR">
+							id = #{id}
+						</foreach>
+						)
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+	</sql>
+
+	<select id="queryListByParam" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from robot_match_kw_relation
+		<include refid="sqlOfPage" />
+	</select>
+</mapper>

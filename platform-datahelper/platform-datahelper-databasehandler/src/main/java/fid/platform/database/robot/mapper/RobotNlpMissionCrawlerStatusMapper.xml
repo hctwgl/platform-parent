@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fid.platform.database.robot.mapper.RobotNlpMissionCrawlerStatusMapper">
+    <resultMap type="fid.platform.core.common.pojo.robot.RobotNlpMissionCrawlerStatus"
+               id="robotNlpMissionCrawlerStatus">
+        <id column="id" property="id"/>
+        <result column="mission_id" property="missionId"/>
+        <result column="crawler_status" property="crawlerStatus"/>
+    </resultMap>
+
+    <sql id="queryRobotNlpMissionCrawlerStatusDomain">
+        select
+            T.id,
+            T.mission_id,
+            T.crawler_status
+        from robot_nlp_mission_crawler_status T
+        where 1 = 1
+    </sql>
+
+    <select id="queryRobotNlpMissionCrawlerStatus"
+            parameterType="fid.platform.core.common.pojo.robot.RobotNlpMissionCrawlerStatus"
+            resultMap="robotNlpMissionCrawlerStatus">
+        <include refid="queryRobotNlpMissionCrawlerStatusDomain"/>
+        <if test="id != null">
+            and T.id = #{id}
+        </if>
+        <if test="missionId != null">
+            and T.mission_id = #{missionId}
+        </if>
+        <if test="crawlerStatus != null">
+            and T.crawler_status = #{crawlerStatus}
+        </if>
+    </select>
+
+    <select id="queryRobotNlpMissionCrawlerStatusCount"
+            parameterType="fid.platform.core.common.pojo.robot.RobotNlpMissionCrawlerStatus" resultType="integer">
+        select count(1) as count
+        from (
+        <include refid="queryRobotNlpMissionCrawlerStatusDomain"/>
+        <if test="id != null">
+            and T.id = #{id}
+        </if>
+        <if test="missionId != null">
+            and T.mission_id = #{missionId}
+        </if>
+        <if test="crawlerStatus != null">
+            and T.crawler_status = #{crawlerStatus}
+        </if>
+        ) c
+    </select>
+
+    <select id="findRobotNlpMissionCrawlerStatus" parameterType="long" resultMap="robotNlpMissionCrawlerStatus">
+        <include refid="queryRobotNlpMissionCrawlerStatusDomain"/>
+        and T.id = #{id}
+    </select>
+
+    <insert id="insertRobotNlpMissionCrawlerStatus"
+            parameterType="fid.platform.core.common.pojo.robot.RobotNlpMissionCrawlerStatus" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into robot_nlp_mission_crawler_status
+        (
+        mission_id
+        <if test="crawlerStatus != null">
+            ,crawler_status
+        </if>
+        )
+        values
+        (
+        #{missionId}
+        <if test="crawlerStatus != null">
+            ,#{crawlerStatus}
+        </if>
+        )
+    </insert>
+
+    <update id="updateRobotNlpMissionCrawlerStatus"
+            parameterType="fid.platform.core.common.pojo.robot.RobotNlpMissionCrawlerStatus">
+        update robot_nlp_mission_crawler_status
+        set
+        id = #{id}
+        <if test="missionId != null">
+            ,mission_id = #{missionId}
+        </if>
+        <if test="crawlerStatus != null">
+            ,crawler_status = #{crawlerStatus}
+        </if>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteRobotNlpMissionCrawlerStatus" parameterType="long">
+        delete from robot_nlp_mission_crawler_status where id = #{id}
+    </delete>
+</mapper>

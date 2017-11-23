@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="platform-modelhelper:war">
+    <output-path>$PROJECT_DIR$/platform-modelhelper/target</output-path>
+    <root id="archive" name="platform-modelhelper.war">
+      <element id="artifact" artifact-name="platform-modelhelper:war exploded" />
+    </root>
+  </artifact>
+</component>

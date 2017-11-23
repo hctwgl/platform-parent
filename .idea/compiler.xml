@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="platform-api-cache" />
+        <module name="platform-api-outinterface" />
+        <module name="platform-api-service" />
+        <module name="platform-core-common" />
+        <module name="platform-core-deeplearningutil" />
+        <module name="platform-core-util" />
+        <module name="platform-datahelper-acceptedhandler" />
+        <module name="platform-datahelper-cdhhandler" />
+        <module name="platform-datahelper-databasehandler" />
+        <module name="platform-datahelper-grabhandler" />
+        <module name="platform-master" />
+        <module name="platform-matching" />
+        <module name="platform-modelhelper" />
+        <module name="platform-trainer" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="platform-api" target="1.8" />
+      <module name="platform-api-cache" target="1.8" />
+      <module name="platform-api-outinterface" target="1.8" />
+      <module name="platform-api-service" target="1.8" />
+      <module name="platform-core" target="1.8" />
+      <module name="platform-core-common" target="1.8" />
+      <module name="platform-core-deeplearningutil" target="1.8" />
+      <module name="platform-datahelper" target="1.8" />
+      <module name="platform-datahelper-acceptedhandler" target="1.8" />
+      <module name="platform-datahelper-cdhhandler" target="1.8" />
+      <module name="platform-datahelper-databasehandler" target="1.8" />
+      <module name="platform-datahelper-grabhandler" target="1.8" />
+      <module name="platform-master" target="1.8" />
+      <module name="platform-matching" target="1.8" />
+      <module name="platform-modelhelper" target="1.8" />
+      <module name="platform-parent" target="1.8" />
+      <module name="platform-trainer" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

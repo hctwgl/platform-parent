@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fid.platform.database.robot.mapper.RobotNlpOrgDataMapper" >
+  <resultMap id="BaseResultMap" type="fid.platform.core.common.pojo.robot.RobotNlpOrgData" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="acceptTime" property="accepttime" jdbcType="TIMESTAMP" />
+    <result column="txt" property="txt" jdbcType="LONGVARCHAR" />
+    <result column="missionId" property="missionId" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="fid.platform.core.common.pojo.robot.RobotNlpOrgData" extends="BaseResultMap" >
+    <result column="txt" property="txt" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, source, acceptTime, txt, missionId
+  </sql>
+  <sql id="Blob_Column_List" >
+    txt
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from robot_nlp_org_data
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from robot_nlp_org_data
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="fid.platform.core.common.pojo.robot.RobotNlpOrgData" useGeneratedKeys="true" keyProperty="id">
+    insert into robot_nlp_org_data (id, source, acceptTime, 
+      txt, missionId)
+    values (#{id,jdbcType=BIGINT}, #{source,jdbcType=VARCHAR}, #{accepttime,jdbcType=TIMESTAMP}, 
+      #{txt,jdbcType=LONGVARCHAR}, #{missionId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="fid.platform.core.common.pojo.robot.RobotNlpOrgData" >
+    insert into robot_nlp_org_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="accepttime != null" >
+        acceptTime,
+      </if>
+      <if test="txt != null" >
+        txt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="accepttime != null" >
+        #{accepttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="txt != null" >
+        #{txt,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="fid.platform.core.common.pojo.robot.RobotNlpOrgData" >
+    update robot_nlp_org_data
+    <set >
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="accepttime != null" >
+        acceptTime = #{accepttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="txt != null" >
+        txt = #{txt,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="fid.platform.core.common.pojo.robot.RobotNlpOrgData" >
+    update robot_nlp_org_data
+    set source = #{source,jdbcType=VARCHAR},
+      acceptTime = #{accepttime,jdbcType=TIMESTAMP},
+      txt = #{txt,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="fid.platform.core.common.pojo.robot.RobotNlpOrgData" >
+    update robot_nlp_org_data
+    set source = #{source,jdbcType=VARCHAR},
+      acceptTime = #{accepttime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fid.platform.database.robot.mapper.SystemModuleStatusMapper">
+    <resultMap type="fid.platform.core.common.pojo.robot.SystemModuleStatus" id="systemModuleStatus">
+        <id column="id" property="id"/>
+        <result column="module_id" property="moduleId"/>
+        <result column="module_name" property="moduleName"/>
+        <result column="machine_host" property="machineHost"/>
+        <result column="module_status" property="moduleStatus"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <sql id="querySystemModuleStatusDomain">
+        select
+            T.id,
+            T.module_id,
+            T.module_name,
+            T.machine_host,
+            T.module_status,
+            T.create_time,
+            T.update_time
+        from system_module_status T
+        where 1 = 1
+    </sql>
+
+    <select id="querySystemModuleStatus" parameterType="fid.platform.core.common.pojo.robot.SystemModuleStatus"
+            resultMap="systemModuleStatus">
+        <include refid="querySystemModuleStatusDomain"/>
+        <if test="id != null">
+            and T.id = #{id}
+        </if>
+        <if test="moduleId != null">
+            and T.module_id = #{moduleId}
+        </if>
+        <if test="moduleName != null">
+            AND T.module_name LIKE '%'||#{moduleName}||'%'
+        </if>
+        <if test="machineHost != null">
+            and T.machine_host = #{machineHost}
+        </if>
+        <if test="moduleStatus != null">
+            and T.module_status = #{moduleStatus}
+        </if>
+        <if test="createTime != null">
+            AND T.create_time = #{createTime}
+        </if>
+        <if test="updateTime != null">
+            AND T.update_time = #{updateTime}
+        </if>
+    </select>
+
+    <select id="querySystemModuleStatusCount" parameterType="fid.platform.core.common.pojo.robot.SystemModuleStatus"
+            resultType="integer">
+        select count(1) as count
+        from (
+        <include refid="querySystemModuleStatusDomain"/>
+        <if test="id != null">
+            and T.id = #{id}
+        </if>
+        <if test="moduleId != null">
+            and T.module_id = #{moduleId}
+        </if>
+        <if test="machineHost != null">
+            and T.machine_host = #{machineHost}
+        </if>
+        <if test="moduleStatus != null">
+            and T.module_status = #{moduleStatus}
+        </if>
+        <if test="createTime != null">
+            AND T.create_time = #{createTime}
+        </if>
+        <if test="updateTime != null">
+            AND T.update_time = #{updateTime}
+        </if>
+        ) c
+    </select>
+
+    <select id="findSystemModuleStatus" parameterType="string" resultMap="systemModuleStatus">
+        <include refid="querySystemModuleStatusDomain"/>
+        and T.id = #{id}
+    </select>
+
+    <insert id="insertSystemModuleStatus" parameterType="fid.platform.core.common.pojo.robot.SystemModuleStatus"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        insert into system_module_status
+        (
+        id
+        <if test="moduleId != null">
+            ,module_id
+        </if>
+        <if test="moduleName != null">
+            ,module_name
+        </if>
+        <if test="machineHost != null">
+            ,machine_host
+        </if>
+        <if test="moduleStatus != null">
+            ,module_status
+        </if>
+        ,create_time
+        ,update_time
+        )
+        values
+        (
+        #{id}
+        <if test="moduleId != null">
+            ,#{moduleId}
+        </if>
+        <if test="moduleName != null">
+            ,#{moduleName}
+        </if>
+        <if test="machineHost != null">
+            ,#{machineHost}
+        </if>
+        <if test="moduleStatus != null">
+            ,#{moduleStatus}
+        </if>
+        <if test="createTime == null">
+            ,sysdate()
+        </if>
+        <if test="createTime != null">
+            ,#{createTime}
+        </if>
+        <if test="updateTime == null">
+            ,sysdate()
+        </if>
+        <if test="updateTime != null">
+            ,#{updateTime}
+        </if>
+        )
+    </insert>
+
+    <update id="updateSystemModuleStatus" parameterType="fid.platform.core.common.pojo.robot.SystemModuleStatus">
+        update system_module_status
+        set
+        id = #{id}
+        <if test="moduleId != null">
+            ,module_id = #{moduleId}
+        </if>
+        <if test="moduleName != null">
+            ,module_name = #{moduleName}
+        </if>
+        <if test="machineHost != null">
+            ,machine_host = #{machineHost}
+        </if>
+        <if test="moduleStatus != null">
+            ,module_status = #{moduleStatus}
+        </if>
+        ,update_time = sysdate()
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSystemModuleStatus" parameterType="string">
+        delete from system_module_status where id = #{id}
+    </delete>
+
+    <select id="querySystemModuleStatusLikeHost" resultMap="systemModuleStatus">
+        SELECT * FROM system_module_status
+        WHERE 1 = 1
+        AND machine_host LIKE '%'||#{host}||'%'
+        <if test="moduleType != 10">
+            AND module_id = #{moduleType}
+        </if>
+    </select>
+</mapper>

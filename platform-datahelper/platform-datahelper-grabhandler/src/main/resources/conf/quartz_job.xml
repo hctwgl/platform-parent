@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+		
+	<!-- 测试示例  			start-->
+	<!-- <bean id="testQtz" class="fid.platform.grabhandler.test.qtz.TestQuartz"></bean>
+	<bean id="testQtzMethod"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="testQtz" />
+		</property>
+		<property name="targetMethod"> 
+			<value>doTest</value>
+		</property> 
+	</bean>
+	<bean id="testQtzMethodTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="testQtzMethod"></property>
+		<property name="cronExpression" value="30 * * * * ?"></property> 30秒跑一次
+	</bean>	 -->
+	<!-- 测试示例  			end-->
+	
+	<!-- <bean id="spiderQtz" class="fid.platform.grabhandler.qtz.SpiderTask"></bean>
+	<bean id="spiderQtzMethod"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="spiderQtz" />
+		</property>
+		<property name="targetMethod"> 
+			<value>doSpiderTask</value>
+		</property> 
+	</bean>
+	<bean id="spiderQtzMethodTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="spiderQtzMethod"></property>
+		<property name="cronExpression" value="30 * * * * ?"></property> 30秒跑一次
+	</bean>	 -->
+	
+	
+	<!-- ======================== 调度工厂 ======================== -->
+	<bean id="SpringJobSchedulerFactoryBean"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<!-- 测试示例 -->
+				<!-- <ref bean="testQtzMethodTrigger"/> -->
+				<!-- <ref bean="spiderQtzMethodTrigger"/> -->
+			</list>
+		</property>
+	</bean>
+</beans>
